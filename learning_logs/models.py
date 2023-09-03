@@ -9,3 +9,17 @@ class Topic(models.Model):
 
     def __str__(self) -> str:
         return self.text
+
+# something specific learned about a topic
+class Entry(models.Model):
+    # a foreign key is a reference to another record in the database
+    # this connects each entry to a specific topic
+    topic = models.ForeignKey(Topic, on_delete=models.CASCADE)
+    text = models.TextField()
+    date_added = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        verbose_name_plural = 'entries'
+
+    def __str__(self) -> str:
+        return self.text[:50] + '...'
