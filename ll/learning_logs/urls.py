@@ -8,5 +8,7 @@ urlpatterns = [
     # home page
     re_path(r'^$', views.index, name='index'),
     # show all topics
-    re_path(r'^topics/', views.topics, name='topics'),
+    re_path(r'^topics/$', views.topics, name='topics'),
+    # detail page for a single topic
+    re_path(r'^topics/(?P<topic_id>\d+)/$', views.topic, name='topic'),
 ]
