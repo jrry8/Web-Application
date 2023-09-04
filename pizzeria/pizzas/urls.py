@@ -4,5 +4,7 @@ from . import views
 app_name = 'pizzas'
 urlpatterns = [
     # home page
-    re_path(r'^$', views.index, name='index')
+    re_path(r'^$', views.index, name='index'),
+    # show all pizzas
+    re_path(r'^pizzas/$', views.pizzas, name='pizzas'),
 ]
