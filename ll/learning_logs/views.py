@@ -18,6 +18,7 @@ def topics(request):
     return render(request, 'learning_logs/topics.html', context)
 
 # show a single topic and all its entries
+@login_required
 def topic(request, topic_id):
     topic = Topic.objects.get(id=topic_id)
     entries = topic.entry_set.order_by('-date_added')
@@ -25,6 +26,7 @@ def topic(request, topic_id):
     return render(request, 'learning_logs/topic.html', context)
 
 # add a new topic
+@login_required
 def new_topic(request):
     # when the user intially requests this page, the browser will sent a GET request
     if request.method != 'POST':
@@ -43,6 +45,7 @@ def new_topic(request):
     return render(request, 'learning_logs/new_topic.html', context)
 
 # add a new entry for a particular topic
+@login_required
 def new_entry(request, topic_id):
     topic = Topic.objects.get(id=topic_id)
     if request.method != 'POST':
@@ -61,6 +64,7 @@ def new_entry(request, topic_id):
     return render(request, 'learning_logs/new_entry.html', context)
 
 # edit an existing entry
+@login_required
 def edit_entry(request, entry_id):
     entry = Entry.objects.get(id=entry_id)
     topic = entry.topic
